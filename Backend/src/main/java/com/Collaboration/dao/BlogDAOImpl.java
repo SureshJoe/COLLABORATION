@@ -100,32 +100,37 @@ public class BlogDAOImpl implements BlogDAO {
 	}
 
 	@Override
-	public boolean approveBlog(int blogId) {
-	
+	public boolean approveBlog(Blog blog) 
+	{
 		try {
-			Blog blog=getBlog(blogId);
 			blog.setStatus("A");
 			sessionFactory.getCurrentSession().update(blog);
 			return true;
+			
 		}
-		catch(Exception e) {
+		catch(Exception e)
+		{
+			return false;
+		}
+		
+	}
+
+	@Override
+	public boolean rejectBlog(Blog blog) {
+		try 
+		{
+			blog.setStatus("NA");
+			sessionFactory.getCurrentSession().update(blog);
+			return true;
+			
+		}
+		catch(Exception e)
+		{
 			return false;
 		}
 	}
 
-	@Override
-	public boolean rejectBlog(int blogId) {
-		
-		try {
-			Blog blog=getBlog(blogId);
-			blog.setStatus("NA");
-			sessionFactory.getCurrentSession().update(blog);
-			return true;
-		}
-		catch(Exception e) {
-			return false;
-		}
-	}
+	
 
 }
 

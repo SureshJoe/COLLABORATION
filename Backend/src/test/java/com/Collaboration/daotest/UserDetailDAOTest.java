@@ -53,14 +53,17 @@ public class UserDetailDAOTest {
 	@Test
 	public void listusertest() {
 		List<UserDetail> listUsers=userdetailDAO.getUsers();
-		for(UserDetail user:listUsers) {
-			System.out.println("username:"+user.getUsername());
+		for(UserDetail userDetail:listUsers) {
+			System.out.println("username:"+userDetail.getUsername());
 		}
 	}
 	
 	@Test
-	public void checkusertest() {
-		assertTrue("problem in checking user",userdetailDAO.checkUser("issacjoe","joe"));
+	public void checkusertest() 
+	{
+		UserDetail user=userdetailDAO.getUser("issacjoe");
+		System.out.println("User has been checked");
+		assertNotNull("problem in checking user",userdetailDAO.checkUser(user));
 	}
 	
 }

@@ -54,7 +54,7 @@ public class BlogDAOTest {
 		Blog blog=blogDAO.getBlog(503);
 		assertTrue("problem in deleting blog",blogDAO.deleteBlog(blog));
 	}
-	@Ignore
+	
 	@Test
 	public void listblogtest() {
 		List<Blog> listBlogs=blogDAO.getBlogs();
@@ -75,11 +75,13 @@ public class BlogDAOTest {
 	
 	@Test
 	public void approveblogtest() {
-		assertTrue("problem in incrementing likes",blogDAO.approveBlog(503));
+		Blog blog=blogDAO.getBlog(503);
+		assertTrue("problem in incrementing likes",blogDAO.approveBlog(blog));
 	}
 	
 	@Test
 	public void rejectblogtest() {
-		assertTrue("problem in incrementing likes",blogDAO.rejectBlog(503));
+		Blog blog=blogDAO.getBlog(503);
+		assertTrue("problem in incrementing likes",blogDAO.rejectBlog(blog));
 	}
 }
