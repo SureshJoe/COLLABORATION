@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.Collaboration.dao.BlogCommentDAO;
@@ -35,5 +37,47 @@ public class BlogCommentRestController {
 	{
 		BlogComment blogcomment=blogcommentDAO.getBlogComment(commentId);
 		return new ResponseEntity<BlogComment>(blogcomment,HttpStatus.OK);
+	}
+	@PostMapping("/addBlogComment")
+	public ResponseEntity<String> addBlogComment(@RequestBody BlogComment blogcomment)
+	{
+		blogcomment.setCommentDate(new java.util.Date());
+		blogcomment.setUsername("issacjoe");
+		if(blogcommentDAO.addBlogComment(blogcomment))
+		{
+			return new ResponseEntity<String>("BlogComment added",HttpStatus.OK);
+		}
+		else
+		{
+			return new ResponseEntity<String>("Error adding blogcomment",HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+	
+	@PostMapping("/updateBlogComment")
+	public ResponseEntity<String> updateBlogComment(@RequestBody BlogComment blogcomment)
+	{
+		if(blogcommentDAO.updateBlogComment(blogcomment)) 
+		{
+			return new ResponseEntity<String>("BlogComment updated",HttpStatus.OK);
+		}
+		else 
+		{
+			return new ResponseEntity<String>("Error updating blogcomment",HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		
+	}
+	@GetMapping("/deleteBlogComment/{commentId}")
+	public ResponseEntity<String> deleteBlogComment(@PathVariable("commentId") int commentId)
+	{
+		BlogComment blogcomment=blogcommentDAO.getBlogComment(commentId);
+		if(blogcommentDAO.deleteBlogComment(blogcomment)) 
+		{
+			return new ResponseEntity<String>("Blogcomment deleted",HttpStatus.OK);
+		}
+		else 
+		{
+			return new ResponseEntity<String>("Error deleting blogcomment",HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		
 	}
 }

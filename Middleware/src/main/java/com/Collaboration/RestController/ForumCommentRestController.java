@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.Collaboration.dao.ForumCommentDAO;
@@ -35,5 +37,47 @@ public class ForumCommentRestController {
 	{
 		ForumComment forumcomment=forumcommentDAO.getForumComment(commentId);
 		return new ResponseEntity<ForumComment>(forumcomment,HttpStatus.OK);
+	}
+	@PostMapping("/addForumComment")
+	public ResponseEntity<String> addForumComment(@RequestBody ForumComment forumcomment)
+	{
+		forumcomment.setCommentDate(new java.util.Date());
+		forumcomment.setUsername("issacjoe");
+		if(forumcommentDAO.addForumComment(forumcomment))
+		{
+			return new ResponseEntity<String>("ForumComment added",HttpStatus.OK);
+		}
+		else
+		{
+			return new ResponseEntity<String>("Error adding forumcomment",HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+	
+	@PostMapping("/updateForumComment")
+	public ResponseEntity<String> updateForumComment(@RequestBody ForumComment forumcomment)
+	{
+		if(forumcommentDAO.updateForumComment(forumcomment)) 
+		{
+			return new ResponseEntity<String>("ForumComment updated",HttpStatus.OK);
+		}
+		else 
+		{
+			return new ResponseEntity<String>("Error updating forumcomment",HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		
+	}
+	@GetMapping("/deleteForumComment/{commentId}")
+	public ResponseEntity<String> deleteForumComment(@PathVariable("commentId") int commentId)
+	{
+		ForumComment forumcomment=forumcommentDAO.getForumComment(commentId);
+		if(forumcommentDAO.deleteForumComment(forumcomment)) 
+		{
+			return new ResponseEntity<String>("Forumcomment deleted",HttpStatus.OK);
+		}
+		else 
+		{
+			return new ResponseEntity<String>("Error deleting forumcomment",HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		
 	}
 }
