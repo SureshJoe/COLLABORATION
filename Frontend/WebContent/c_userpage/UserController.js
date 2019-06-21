@@ -40,7 +40,16 @@ $scope.addUser= function() {
   	  $location.path("/register");
    });
  }
-
+$scope.upload=function()  {
+	 $http.post('http://localhost:8080/Middleware/doUpload')
+	 .then(function(response) {
+		 console.log("Profile Picture Updated");
+		 $location.path("/profile");
+	 },
+	 function(errresponse) {
+		 console.log("Profile Picture not Updated");
+	 });
+}
 $scope.logout=function()
 {
 console.log("Logging out");

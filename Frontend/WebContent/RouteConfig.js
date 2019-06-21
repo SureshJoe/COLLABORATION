@@ -5,6 +5,8 @@ myApp.config(function($routeProvider){
 	
 	$routeProvider.when("/login",{templateUrl:"c_userpage/Login.html"})
 	              .when("/register",{templateUrl:"c_userpage/Register.html"})
+	              .when("/profile",{templateUrl:"c_userpage/ProfilePicture.html"})
+	              .when("/chat",{templateUrl:"c_chat/Chat.html"})
 	              
 	              
 	              .when("/addBlog",{templateUrl:"c_blog/AddBlog.html"})
@@ -12,6 +14,19 @@ myApp.config(function($routeProvider){
                   .when("/showBlog",{templateUrl:"c_blog/ShowBlog.html"})
                   .when("/updateBlog",{templateUrl:"c_blog/UpdateBlog.html"})
                   .when("/myBlog",{templateUrl:"c_blog/MyBlog.html"})
+                  
+                  
+                  .when("/blogComment",{templateUrl:"c_blog/BlogComment.html"})
+                  .when("/updateComment",{templateUrl:"c_blog/UpdateComment.html"})
+                  
+                  
+                  .when("/showFriends",{templateUrl:"c_friend/ShowFriends.html"})
+	              .when("/friendRequests",{templateUrl:"c_friend/FriendRequests.html"})
+	              .when("/suggestedFriends",{templateUrl:"c_friend/SuggestedFriends.html"})
+                  
+                  
+                  
+                  
 });
 
 
