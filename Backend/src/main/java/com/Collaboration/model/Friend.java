@@ -14,6 +14,8 @@ public class Friend {
 @SequenceGenerator(name="Friendid",allocationSize=1,sequenceName="Friendid_seq")
 private int friendId;
 private String username;
+private String userFirstName;
+private String userSurName;
 private String friendusername;
 private String friendFirstName;
 private String friendSurName;
@@ -27,6 +29,18 @@ public void setFriendFirstName(String friendFirstName) {
 
 
 
+public String getUserFirstName() {
+	return userFirstName;
+}
+public void setUserFirstName(String userFirstName) {
+	this.userFirstName = userFirstName;
+}
+public String getUserLastName() {
+	return userSurName;
+}
+public void setUserLastName(String userLastName) {
+	this.userSurName = userLastName;
+}
 public int getFriendId() {
 	return friendId;
 }

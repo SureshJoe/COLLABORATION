@@ -32,10 +32,10 @@ public class BlogCommentDAOImpl implements BlogCommentDAO {
 	}
 
 	@Override
-	public boolean updateBlogComment(BlogComment blogcomment) {
+	public boolean updateBlogComment(BlogComment blogComment) {
 		
 		try {
-			sessionFactory.getCurrentSession().update(blogcomment);
+			sessionFactory.getCurrentSession().update(blogComment);
 			return true;
 		}
 		catch(Exception e) {
@@ -70,5 +70,13 @@ public class BlogCommentDAOImpl implements BlogCommentDAO {
 	    List<BlogComment> listComments=query.list();
 	    return listComments;
 	}
-}
 
+	@Override
+	public List<BlogComment> getBlogComments(int blogId) {
+		Session session=sessionFactory.openSession();
+	    Query query=session.createQuery("from BlogComment where blogId=:blogId");
+	    query.setParameter("blogId",blogId);
+	    List<BlogComment> listComments=query.list();
+	    return listComments;
+	}
+}

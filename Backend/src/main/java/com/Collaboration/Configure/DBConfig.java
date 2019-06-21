@@ -33,6 +33,7 @@ import com.Collaboration.model.Forum;
 import com.Collaboration.model.ForumComment;
 import com.Collaboration.model.Friend;
 import com.Collaboration.model.Job;
+import com.Collaboration.model.ProfilePicture;
 import com.Collaboration.model.UserDetail;
 
 
@@ -72,6 +73,7 @@ public class DBConfig
 		factory.addAnnotatedClass(ForumComment.class);
 		factory.addAnnotatedClass(Friend.class);
 		factory.addAnnotatedClass(Job.class);
+		factory.addAnnotatedClass(ProfilePicture.class);
 		
 		System.out.println(">>>>>>SessionFactory Object created<<<<<<");
 
