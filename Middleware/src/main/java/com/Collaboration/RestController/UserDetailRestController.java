@@ -61,7 +61,7 @@ public class UserDetailRestController {
 		UserDetail userDetail1=userDetailDAO.checkUser(userDetail);
 		if(userDetail1!=null)
 		{
-			session.setAttribute("UserDetail",userDetail1);
+			session.setAttribute("userDetail",userDetail1);
 			return new ResponseEntity<UserDetail>(userDetail1,HttpStatus.OK);
 		}
 		else 

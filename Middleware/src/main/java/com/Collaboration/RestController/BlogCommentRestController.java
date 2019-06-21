@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -32,17 +33,29 @@ public class BlogCommentRestController {
 		}
 	}
 	
+	@GetMapping("/getBlogComments/{blogId}") 
+	public ResponseEntity<List<BlogComment>> getBlogCommentswithId(@PathVariable("blogId") int blogId) 
+	{
+		List<BlogComment> listBlogComments=blogcommentDAO.getBlogComments(blogId);
+		if(listBlogComments.size()>0) {
+			return new ResponseEntity<List<BlogComment>>(listBlogComments,HttpStatus.OK);
+		}
+		else {
+			return new ResponseEntity<List<BlogComment>>(listBlogComments,HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+	
 	@GetMapping("/getBlogComment/{commentId}") 
 	public ResponseEntity<BlogComment> getBlogComment(@PathVariable("commentId") int commentId)
 	{
 		BlogComment blogcomment=blogcommentDAO.getBlogComment(commentId);
 		return new ResponseEntity<BlogComment>(blogcomment,HttpStatus.OK);
 	}
-	@PostMapping("/addBlogComment")
+	
+	@PostMapping(value="/addBlogComment",produces=MediaType.TEXT_PLAIN_VALUE)
 	public ResponseEntity<String> addBlogComment(@RequestBody BlogComment blogcomment)
 	{
 		blogcomment.setCommentDate(new java.util.Date());
-		blogcomment.setUsername("issacjoe");
 		if(blogcommentDAO.addBlogComment(blogcomment))
 		{
 			return new ResponseEntity<String>("BlogComment added",HttpStatus.OK);
@@ -53,10 +66,10 @@ public class BlogCommentRestController {
 		}
 	}
 	
-	@PostMapping("/updateBlogComment")
-	public ResponseEntity<String> updateBlogComment(@RequestBody BlogComment blogcomment)
+	@PostMapping(value="/updateBlogComment",produces=MediaType.TEXT_PLAIN_VALUE)
+	public ResponseEntity<String> updateBlogComment(@RequestBody BlogComment blogComment)
 	{
-		if(blogcommentDAO.updateBlogComment(blogcomment)) 
+		if(blogcommentDAO.updateBlogComment(blogComment)) 
 		{
 			return new ResponseEntity<String>("BlogComment updated",HttpStatus.OK);
 		}
@@ -66,7 +79,7 @@ public class BlogCommentRestController {
 		}
 		
 	}
-	@GetMapping("/deleteBlogComment/{commentId}")
+	@GetMapping(value="/deleteBlogComment/{commentId}",produces=MediaType.TEXT_PLAIN_VALUE)
 	public ResponseEntity<String> deleteBlogComment(@PathVariable("commentId") int commentId)
 	{
 		BlogComment blogcomment=blogcommentDAO.getBlogComment(commentId);
