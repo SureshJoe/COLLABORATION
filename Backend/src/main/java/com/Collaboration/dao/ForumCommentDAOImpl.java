@@ -70,6 +70,14 @@ public class ForumCommentDAOImpl implements ForumCommentDAO {
 		List<ForumComment> listComments=query.list();
 		return listComments;
 	}
+	
+	@Override
+	public List<ForumComment> getForumComments(int forumId) {
+		Session session=sessionFactory.openSession();
+	    Query query=session.createQuery("from ForumComment where forumId=:forumId");
+	    query.setParameter("forumId",forumId);
+	    List<ForumComment> listComments=query.list();
+	    return listComments;
+	}
 
 }
-

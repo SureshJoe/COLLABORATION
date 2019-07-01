@@ -60,4 +60,3 @@ public class JobDAOImpl implements JobDAO {
 	}
 
 }
-

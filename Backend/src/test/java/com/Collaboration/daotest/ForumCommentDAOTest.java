@@ -25,7 +25,7 @@ public class ForumCommentDAOTest {
 		context.refresh();
 		forumcommentDAO=(ForumCommentDAO)context.getBean("forumcommentDAO");
 	}
-	@Ignore
+	
 	@Test
 	public void addforumcommenttest() {
 		ForumComment forumcomment=new ForumComment();
@@ -53,7 +53,7 @@ public class ForumCommentDAOTest {
 		ForumComment forumcomment=forumcommentDAO.getForumComment(502);
 		assertTrue("problem in deleting forum comment",forumcommentDAO.deleteForumComment(forumcomment));
 	}
-	
+	@Ignore
 	@Test
 	public void listforumcomment() {
 		List<ForumComment> listComments=forumcommentDAO.getForumComments();
