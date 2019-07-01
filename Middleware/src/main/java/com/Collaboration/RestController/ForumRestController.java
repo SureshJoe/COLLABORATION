@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -38,7 +39,7 @@ public class ForumRestController {
 		Forum forum=forumDAO.getForum(forumId);
 		return new ResponseEntity<Forum>(forum,HttpStatus.OK);
 	}
-	@PostMapping("/addForum")
+	@PostMapping(value="/addForum",produces=MediaType.TEXT_PLAIN_VALUE)
 	public ResponseEntity<String> addForum(@RequestBody Forum forum)
 	{
 		forum.setCreateDate(new java.util.Date());
@@ -54,7 +55,7 @@ public class ForumRestController {
 		}
 	}
 	
-	@PostMapping("/updateForum")
+	@PostMapping(value="/updateForum",produces=MediaType.TEXT_PLAIN_VALUE)
 	public ResponseEntity<String> updateForum(@RequestBody Forum forum)
 	{
 		if(forumDAO.updateForum(forum)) 
@@ -67,7 +68,7 @@ public class ForumRestController {
 		}
 		
 	}
-	@GetMapping("/deleteForum/{forumId}")
+	@GetMapping(value="/deleteForum/{forumId}",produces=MediaType.TEXT_PLAIN_VALUE)
 	public ResponseEntity<String> deleteForum(@PathVariable("forumId") int forumId)
 	{
 		Forum forum=forumDAO.getForum(forumId);
@@ -82,7 +83,7 @@ public class ForumRestController {
 		
 	}
 	
-	@GetMapping("/approveForum/{forumId}")
+	@GetMapping(value="/approveForum/{forumId}",produces=MediaType.TEXT_PLAIN_VALUE)
 	public ResponseEntity<String> approveForum(@PathVariable("forumId") int forumId)
 	{
 		Forum forum=forumDAO.getForum(forumId);
@@ -97,7 +98,7 @@ public class ForumRestController {
 		
 	}
 
-	@GetMapping("/rejectForum/{forumId}")
+	@GetMapping(value="/rejectForum/{forumId}",produces=MediaType.TEXT_PLAIN_VALUE)
 	public ResponseEntity<String> rejectForum(@PathVariable("forumId") int forumId)
 	{
 		Forum forum=forumDAO.getForum(forumId);

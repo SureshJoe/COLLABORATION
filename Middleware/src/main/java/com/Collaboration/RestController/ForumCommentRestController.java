@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -38,7 +39,7 @@ public class ForumCommentRestController {
 		ForumComment forumcomment=forumcommentDAO.getForumComment(commentId);
 		return new ResponseEntity<ForumComment>(forumcomment,HttpStatus.OK);
 	}
-	@PostMapping("/addForumComment")
+	@PostMapping(value="/addForumComment",produces=MediaType.TEXT_PLAIN_VALUE)
 	public ResponseEntity<String> addForumComment(@RequestBody ForumComment forumcomment)
 	{
 		forumcomment.setCommentDate(new java.util.Date());
@@ -53,7 +54,7 @@ public class ForumCommentRestController {
 		}
 	}
 	
-	@PostMapping("/updateForumComment")
+	@PostMapping(value="/updateForumComment",produces=MediaType.TEXT_PLAIN_VALUE)
 	public ResponseEntity<String> updateForumComment(@RequestBody ForumComment forumcomment)
 	{
 		if(forumcommentDAO.updateForumComment(forumcomment)) 
@@ -66,7 +67,7 @@ public class ForumCommentRestController {
 		}
 		
 	}
-	@GetMapping("/deleteForumComment/{commentId}")
+	@GetMapping(value="/deleteForumComment/{commentId}",produces=MediaType.TEXT_PLAIN_VALUE)
 	public ResponseEntity<String> deleteForumComment(@PathVariable("commentId") int commentId)
 	{
 		ForumComment forumcomment=forumcommentDAO.getForumComment(commentId);
