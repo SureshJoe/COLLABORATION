@@ -20,6 +20,21 @@ myApp.config(function($routeProvider){
                   .when("/updateComment",{templateUrl:"c_blog/UpdateComment.html"})
                   
                   
+                  .when("/addForum",{templateUrl:"c_forum/AddForum.html"})
+                  .when("/manageForum",{templateUrl:"c_forum/ManageForum.html"})
+                  .when("/showForum",{templateUrl:"c_forum/ShowForum.html"})
+                  .when("/updateForum",{templateUrl:"c_forum/UpdateForum.html"})
+                  .when("/myForum",{templateUrl:"c_forum/MyForum.html"})
+                  
+                  
+                  .when("/forumComment",{templateUrl:"c_forum/ForumComment.html"})
+	              .when("/updateForumComment",{templateUrl:"c_forum/UpdateForumComment.html"})
+	              
+	              
+	              .when("/addJob",{templateUrl:"c_job/AddJob.html"})
+	              .when("/showJob",{templateUrl:"c_job/ShowJob.html"})
+                  
+                  
                   .when("/showFriends",{templateUrl:"c_friend/ShowFriends.html"})
 	              .when("/friendRequests",{templateUrl:"c_friend/FriendRequests.html"})
 	              .when("/suggestedFriends",{templateUrl:"c_friend/SuggestedFriends.html"})

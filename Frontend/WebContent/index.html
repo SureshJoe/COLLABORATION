@@ -14,7 +14,10 @@
  <script src="c_chat/ChatService.js"></script>
 <script src="c_blog/BlogController.js"></script>
 <script src="c_blog/BlogCommentController.js"></script>
+<script src="c_forum/ForumController.js"></script>
+<script src="c_forum/ForumCommentController.js"></script>
 <script src="c_friend/FriendController.js"></script>
+<script src="c_job/JobController.js"></script>
 
 
 
@@ -64,6 +67,31 @@
     <li><a  href="#/showBlog">Show Blog</a></li>
     </ul>
     </div><br>
+    
+    
+    <div class="dropdown">
+    <button type="button" data-toggle="dropdown">Forum<span class="caret"></span></button>
+    <ul class="dropdown-menu">
+    <li><a  href="#/addForum" ng-show="currentUser.role=='ROLE_USER'">Add Forum</a></li>
+    <li><a  href="#/myForum" ng-show="currentUser.role=='ROLE_USER'">My Forum</a></li>
+    <li><a  href="#/manageForum" ng-show="currentUser.role=='ROLE_ADMIN'">Manage Forum</a></li>
+    <li><a  href="#/showForum">Show Forum</a></li>
+    </ul>
+    </div><br>
+    
+    
+    
+    <div class="dropdown">
+    <button type="button" data-toggle="dropdown">Job<span class="caret"></span></button>
+    <ul class="dropdown-menu">
+    <li><a  href="#/addJob" ng-show="currentUser.role=='ROLE_ADMIN'">Add Job</a></li>
+    <li><a  href="#/showJob">Show Job</a></li>
+    </ul>
+    </div><br>
+    
+    
+    
+    
     
     
     
